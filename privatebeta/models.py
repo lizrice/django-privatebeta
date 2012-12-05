@@ -15,7 +15,7 @@ class InviteRequest(models.Model):
         return _('Invite for %(email)s') % {'email': self.email}
 
     def _get_accepted(self):
-        match = User.objects.filter(email=self.email)
+        match = User.objects.filter(email__iexact=self.email)
         return match.exists()
     
     accepted = property(_get_accepted)
